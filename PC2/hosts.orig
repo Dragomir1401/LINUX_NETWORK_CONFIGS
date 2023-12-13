@@ -1,0 +1,14 @@
+127.0.0.1 localhost PC2
+::1	localhost ip6-localhost ip6-loopback
+fe00::0	ip6-localnet
+ff00::0	ip6-mcastprefix
+ff02::1	ip6-allnodes
+ff02::2	ip6-allrouters
+
+10.13.11.129 Router0
+10.11.200.6 Router-X
+172.18.122.70 PC-X
+10.13.11.2 PC1
+10.13.11.130 PC2
+10.13.11.3 PC3
+10.11.200.1 host
