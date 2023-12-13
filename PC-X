@@ -1,0 +1,9 @@
+# Tema 2 RL - Interface configuration (on ifupdown-ng)
+# RTFM: https://github.com/ifupdown-ng/ifupdown-ng/blob/main/doc/interfaces.scd
+
+# Example entry:
+auto eth0
+iface eth0
+	address 172.18.122.70/29
+	gateway 172.18.122.65
+	up cat /etc/hosts.orig >/etc/hosts
