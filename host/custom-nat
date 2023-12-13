@@ -1,3 +1,2 @@
 #!/bin/sh
-iptables -t nat -A PREROUTING -p tcp --dport 6088 -j DNAT --to-destination 172.18.122.70:8977
-
+sudo iptables -t nat -A PREROUTING -p udp --dport 6088 -j DNAT --to-destination 172.18.122.70:8977
