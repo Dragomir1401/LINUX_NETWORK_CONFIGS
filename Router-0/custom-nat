@@ -1,0 +1,5 @@
+#!/bin/sh
+sudo iptables -t nat -A PREROUTING -p tcp --dport 14228 -j DNAT --to-destination 10.13.11.2:22
+sudo iptables -t nat -A PREROUTING -p tcp --dport 14112 -j DNAT --to-destination 10.13.11.130:22
+sudo iptables -t nat -A PREROUTING -p tcp --dport 14176 -j DNAT --to-destination 10.13.11.3:22
+
