@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Set password, source and destination directory
+SSHPASS='student'
+SOURCE_DIR="student@PC-X:/opt/my-firmware/"
+DEST_DIR="student@PC2:/tmp/firmware-files/"
+
+# Create target directory on destination
+sshpass -p "$SSHPASS" ssh -o StrictHostKeyChecking=no student@PC2 "mkdir -p /tmp/firmware-files/"
+
+# List all files on source and read from that output
+sshpass -p "$SSHPASS" ssh -o StrictHostKeyChecking=no student@PC-X "ls /opt/my-firmware/" | while read -r file; do
+    if [[ "$file" =~ ^[a-zA-Z0-9]+\.bin$ ]]; then
+        # Copy file from source on a tmp location
+        sshpass -p "$SSHPASS" scp -o StrictHostKeyChecking=no "${SOURCE_DIR}${file}" "/tmp/${file}"
+
+        # Write file to destination from tmp dir
+        sshpass -p "$SSHPASS" scp -o StrictHostKeyChecking=no "/tmp/${file}" "${DEST_DIR}"
+    fi
+done
+
