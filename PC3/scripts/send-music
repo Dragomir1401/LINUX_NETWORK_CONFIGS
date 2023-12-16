@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Set the destination and password on PC1
+DEST_DIR="fs@PC1:/home/fs/music"
+PASSWORD='5$4l0m'
+
+# Regex for specified rules for the file names
+regex='^[A-Z]+\.mp3$'
+
+for file in *; do
+    if [[ -f "$file" && "$file" =~ $regex ]]; then
+        # Use sshpass to transfer the file
+        sshpass -p "$PASSWORD" scp -o StrictHostKeyChecking=no "$file" "$DEST_DIR"
+    fi
+done
