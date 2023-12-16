@@ -1,0 +1,11 @@
+#!/bin/sh
+sudo iptables -A FORWARD -s 10.13.11.3 -p tcp --dport 22 -j DROP
+sudo iptables -A FORWARD -s 10.13.11.3 -p tcp --dport 25 -j DROP
+
+sudo iptables -A FORWARD -s 10.13.11.2 -d 172.18.122.70 -p udp --dport 8977 -j DROP
+sudo iptables -A FORWARD -s 10.13.11.3 -d  172.18.122.70 -p udp --dport 8977 -j DROP
+sudo iptables -A FORWARD -s 10.13.11.130 -d 172.18.122.70 -p udp --dport 8977 -j DROP
+
+sudo iptables -A FORWARD -s 10.13.11.130 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -A FORWARD -d 10.13.11.130 -p icmp -j ACCEPT
+sudo iptables -A FORWARD -d 10.13.11.130 -p tcp --dport 22 -j ACCEPT
