@@ -1,25 +1,3 @@
 #!/bin/bash
-
-BASE_URL="http://host/.secret/"
-DOWNLOAD_DIR="downloaded_content"
-
-# Download the directories from the host and redirect output
-wget --user=corina --password=RL2023 --recursive --no-parent --directory-prefix="$DOWNLOAD_DIR" "$BASE_URL" 2> /dev/null
-
-# Search in each entry of a directory recursively
-find_password_file() {
-    for dir in "$1"/*; do
-	# Search recursively in directory
-        if [ -d "$dir" ]; then
-            find_password_file "$dir"
-	# See if the file is password.txt
-        elif [ -f "$dir" ]; then
-            if [[ "$dir" == *"password.txt" ]]; then
-                cat "$dir"
-                exit 0
-            fi
-        fi
-    done
-}
-
-find_password_file "$DOWNLOAD_DIR/host/.secret"
+wget --http-user="corina" --http-password="RL2023" -nd -A txt --recursive --no-parent "http://host/.secret/" 2> /dev/null
+cat password.txt
