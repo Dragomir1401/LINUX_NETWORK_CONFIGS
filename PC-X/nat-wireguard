@@ -1,0 +1,4 @@
+#!/bin/sh
+
+sudo iptables -t nat -A PREROUTING -p tcp --dport 666 -j DNAT --to-destination 10.66.212.3:999
+sudo iptables -t nat -A POSTROUTING -p tcp --dport 999 -j MASQUERADE
